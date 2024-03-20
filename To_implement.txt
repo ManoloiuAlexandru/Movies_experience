@@ -4,3 +4,5 @@
 4.Sa se creeze o functie care spune ce film din lista de filme are cele mai multe premii.
 5.Sa se creeze o functie care spune ce film din lista de filme are cele mai putine premii.
 6.Sa se adauge in lista de filme 5 filme noi.
+7.Sa se creeze o functie care spune ce film din lista de filme este cel mai lung.
+8.Sa se creeze o functie care spune ce film din lista de filme este cel mai scurt.
