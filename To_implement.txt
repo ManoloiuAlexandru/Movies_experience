@@ -6,3 +6,5 @@
 6.Sa se adauge in lista de filme 5 filme noi.
 7.Sa se creeze o functie care spune ce film din lista de filme este cel mai lung.
 8.Sa se creeze o functie care spune ce film din lista de filme este cel mai scurt.
+9.Sa se creeze o functie care intoarce o lista care contine toate filemele care au obtinut:Academy Award - Best Makeup.
+10.Sa se creeze o functie care intoarce un dictionar care contine are ca si key tara si ca si valoare o lista cu fileme care s-au jucat in aceea tara.
