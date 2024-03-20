@@ -1,0 +1,6 @@
+1.Sa se creeze o functie care spune ce film din lista de filme este cel mai vechi.
+2.Sa se creeze o functie care spune ce film din lista de filme este cel mai nou.
+3.Sa se creeze o functie care spune ce film din lista de filme are cei mai multi actori.
+4.Sa se creeze o functie care spune ce film din lista de filme are cele mai multe premii.
+5.Sa se creeze o functie care spune ce film din lista de filme are cele mai putine premii.
+6.Sa se adauge in lista de filme 5 filme noi cu aceelasi date.
