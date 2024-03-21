@@ -13,3 +13,5 @@
 13.Utilizatori care folosesc siteul o sa aiba adresa de email criptata folosind algoritmul cezar de criptare. Ca si key se va folosi un numar fix dat de la tastatura.
 14.Utilizatorii for sa inchirieze filme de pe site ei o sa foloseasca un card de credit, sa se implmenteze algoritmul luhn, de validare a cardurilor.
 15.Utilizatorii nu pot sa puna adrese de email gresite. o adresa de email este corecta daca se termina in .com, .org, .net, .edu daca are litere,numere,.,_,-.
+15.Utilizatori nu pot sa introduca un cont care are aceeasi adresa de email cu un cont deja existent.
+16.
