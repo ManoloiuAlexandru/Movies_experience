@@ -14,4 +14,6 @@
 14.Utilizatorii for sa inchirieze filme de pe site ei o sa foloseasca un card de credit, sa se implmenteze algoritmul luhn, de validare a cardurilor.
 15.Utilizatorii nu pot sa puna adrese de email gresite. o adresa de email este corecta daca se termina in .com, .org, .net, .edu daca are litere,numere,.,_,-.
 15.Utilizatori nu pot sa introduca un cont care are aceeasi adresa de email cu un cont deja existent.
-16.
+16.Fiecare utilizator are o lista cu filme preferata. Sa se afle care sunt cele top 5 cele mai favorite filme ale utilizatorilor.
+17.Sa se sparga fișierul in fișiere mici si sa se reorganizeze codul.
+18.Sa se scrie documentația la acest proiect. 
