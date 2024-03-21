@@ -10,3 +10,5 @@
 10.Sa se creeze o functie care intoarce un dictionar care are ca si key tara si ca si valoare o lista cu filmele care s-au jucat in aceea tara.
 11.Se da o lista cu utilizatori sa sa afle ce utilizatori din lista au parola puternica, o parola este puternica daca contine:litere mari,mici,numere si are o lungime de cel putin 8 caractere.
 12.Utilizatorii site-ului vor ca datele lor personale sa fie mai sigure. Sa se faca datele mai securizate folosind procesul de "salt" care functioneaza adaugand un string de 8 sau mai multe caractere la parola pe care o are un utilizator si dupa genereaza un hash pe baza noi parole obtinute. Modul in care se poate valida parola este ca atunci cand noi introducem o parola se adauga "salt"-ul si dupa se face hashing iar si validam ca hashingul este aceelasi.
+13.Utilizatori care folosesc siteul o sa aiba numele criptat folosind algoritmul cezar de criptare. Ca si key se va folosi un numar fix dat de la tastatura.
+14.Utilizatorii for sa inchirieze filme de pe site ei o sa foloseasca un card de credit, sa se implmenteze algoritmul luhn, de validare a cardurilor.
