@@ -12,3 +12,4 @@
 12.Utilizatorii site-ului vor ca datele lor personale sa fie mai sigure. Sa se faca datele mai securizate folosind procesul de "salt" care functioneaza adaugand un string de 8 sau mai multe caractere la parola pe care o are un utilizator si dupa genereaza un hash pe baza noi parole obtinute. Modul in care se poate valida parola este ca atunci cand noi introducem o parola se adauga "salt"-ul si dupa se face hashing iar si validam ca hashingul este aceelasi.
 13.Utilizatori care folosesc siteul o sa aiba adresa de email criptata folosind algoritmul cezar de criptare. Ca si key se va folosi un numar fix dat de la tastatura.
 14.Utilizatorii for sa inchirieze filme de pe site ei o sa foloseasca un card de credit, sa se implmenteze algoritmul luhn, de validare a cardurilor.
+15.Utilizatorii nu pot sa puna adrese de email gresite. o adresa de email este corecta daca se termina in .com, .org, .net, .edu daca are litere,numere,.,_,-.
