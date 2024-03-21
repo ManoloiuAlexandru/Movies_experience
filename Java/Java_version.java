@@ -149,6 +149,22 @@ public class Main {
         return upper && lower && number && password.length() >= 8;
     }
 
+    public static boolean cardValidation(String password) {
+        int sumEven = 0, sumOdd = 0;
+        for (int i = password.length() - 1; i > -1; i--) {
+            if (i % 2 == 0 && StringUtils.isNumeric(String.valueOf(password.charAt(i)))) {
+                int sumCf = Character.getNumericValue(password.charAt(i)) * 2;
+                sumEven += sumCf % 10 + sumCf / 10;
+            } else if (StringUtils.isNumeric(String.valueOf(password.charAt(i)))) {
+                sumOdd += Character.getNumericValue(password.charAt(i));
+            }
+        }
+        if ((sumEven + sumOdd) % 10 == 0) {
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Map<Object, Object> responseFromServer;
         try {
@@ -192,6 +208,7 @@ public class Main {
         }
         System.out.println(passwordCheck(listOfUsers.get(1).get("password")));
         encryptEmail(listOfUsers);
+        System.out.println(cardValidation(listOfUsers.get(0).get("card_number")));
     }
 
     private static ArrayList<Map<String, String>> getMaps() {
@@ -200,18 +217,21 @@ public class Main {
             put("nume", "Ion");
             put("password", "df3213d");
             put("email", "AAASS@yahoo.com");
+            put("card_number", "2222990995257051");
         }};
         listOfUsers.add(entry);
         entry = new HashMap<>() {{
             put("nume", "Vasile");
             put("email", "sfsgsddsfg@yahoo.com");
             put("password", "Ad5kfkgfJHH90hjh8y");
+            put("card_number", "4847352989063094");
         }};
         listOfUsers.add(entry);
         entry = new HashMap<>() {{
             put("nume", "Mircea");
             put("email", "dsfsdgfdf@yahoo.com");
             put("password", "df322fd3n32K13d");
+            put("card_number", "4847352989087694");
         }};
         listOfUsers.add(entry);
         return listOfUsers;
