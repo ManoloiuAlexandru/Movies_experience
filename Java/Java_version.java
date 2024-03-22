@@ -149,6 +149,38 @@ public class Main {
         return upper && lower && number && password.length() >= 8;
     }
 
+    private static boolean validateUsername(String userName) {
+        for (int i = 0; i < userName.length(); i++) {
+            if (!StringUtils.isNoneBlank(String.valueOf(userName.charAt(i))))
+                return false;
+            else if (!(StringUtils.isAlphanumeric(String.valueOf(userName.charAt(i)))) && !"._".contains(String.valueOf(userName.charAt(i))))
+                return false;
+
+        }
+        return true;
+    }
+
+    private static boolean validateDomain(String domain) {
+        if (!domain.contains(".")) return false;
+        for (int i = 0; i < domain.length(); i++) {
+            if (!StringUtils.isNoneBlank(String.valueOf(domain.charAt(i)))) return false;
+            else if (!(StringUtils.isAlphanumeric(String.valueOf(domain.charAt(i)))) && !".-".contains(String.valueOf(domain.charAt(i))))
+                return false;
+        }
+        return true;
+    }
+
+    public static boolean validateEmail(String email) {
+        if (!email.contains("@") || StringUtils.countMatches("@", email) > 1) {
+            return false;
+        } else {
+            String userName = email.split("@")[0];
+            String domain = email.split("@")[1];
+            return validateUsername(userName) && validateDomain(domain);
+        }
+
+    }
+
     public static boolean cardValidation(String password) {
         int sumEven = 0, sumOdd = 0;
         for (int i = password.length() - 1; i > -1; i--) {
@@ -209,6 +241,7 @@ public class Main {
         System.out.println(passwordCheck(listOfUsers.get(1).get("password")));
         encryptEmail(listOfUsers);
         System.out.println(cardValidation(listOfUsers.get(0).get("card_number")));
+        System.out.println(validateEmail(listOfUsers.get(1).get("email")));
     }
 
     private static ArrayList<Map<String, String>> getMaps() {
@@ -222,7 +255,7 @@ public class Main {
         listOfUsers.add(entry);
         entry = new HashMap<>() {{
             put("nume", "Vasile");
-            put("email", "sfsgsddsfg@yahoo.com");
+            put("email", "s.dfg@.343.4_34@yah.oo.com");
             put("password", "Ad5kfkgfJHH90hjh8y");
             put("card_number", "4847352989063094");
         }};
