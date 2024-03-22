@@ -17,3 +17,5 @@
 16.Fiecare utilizator are o lista cu filme preferata. Sa se afle care sunt cele top 5 cele mai favorite filme ale utilizatorilor.
 17.Sa se sparga fișierul in fișiere mici si sa se reorganizeze codul.
 18.Sa se scrie documentația la acest proiect. 
+19.Sa se adauge 10 users noi.
+20.
