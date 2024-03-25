@@ -1,201 +1,13 @@
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
-
 public class Main {
 
-    public static Map<Object, Object> getOldestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> oldestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("year") < (int) oldestMovie.get("year")) {
-                oldestMovie = movie;
-            }
-        }
-        return oldestMovie;
-    }
-
-    public static Map<Object, Object> getNewestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> newestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("year") > (int) newestMovie.get("year")) {
-                newestMovie = movie;
-            }
-        }
-        return newestMovie;
-    }
-
-    public static Map<Object, Object> getMostActorsInMovies(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> mostActorsMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<?>) movie.get("actors")).size() > ((ArrayList<?>) mostActorsMovie.get("actors")).size()) {
-                mostActorsMovie = movie;
-            }
-        }
-        return mostActorsMovie;
-    }
-
-    public static Map<Object, Object> getMostAwardsMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> mostAwardsMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<?>) movie.get("awards")).size() > ((ArrayList<?>) mostAwardsMovie.get("awards")).size()) {
-                mostAwardsMovie = movie;
-            }
-        }
-        return mostAwardsMovie;
-    }
-
-    public static Map<Object, Object> getLessAwardsMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> lessAwardedMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<?>) movie.get("awards")).size() < ((ArrayList<?>) lessAwardedMovie.get("awards")).size()) {
-                lessAwardedMovie = movie;
-            }
-        }
-        return lessAwardedMovie;
-    }
-
-    public static Map<Object, Object> getLongestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> longestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("runtime") > (int) longestMovie.get("runtime")) {
-                longestMovie = movie;
-            }
-        }
-        return longestMovie;
-    }
-
-    public static Map<Object, Object> getShortestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> shortestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("runtime") < (int) shortestMovie.get("runtime")) {
-                shortestMovie = movie;
-            }
-        }
-        return shortestMovie;
-    }
-
-    public static ArrayList<Map<Object, Object>> getBestMakeupMovies(ArrayList<Map<Object, Object>> listOfMovies) {
-        ArrayList<Map<Object, Object>> arrayOfBestMakeup = new ArrayList<>();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<String>) movie.get("awards")).contains("Academy Award - Best Makeup")) {
-                arrayOfBestMakeup.add(movie);
-            }
-        }
-        return arrayOfBestMakeup;
-    }
-
-    public static HashMap<String, ArrayList<Map<Object, Object>>> getMapOfMovieCountry(ArrayList<Map<Object, Object>> listOfMovies) {
-        HashMap<String, ArrayList<Map<Object, Object>>> countryMovies = new HashMap<>();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (!(countryMovies.containsKey(movie.get("country")))) {
-                ArrayList<Map<Object, Object>> movies = new ArrayList<>() {{
-                    add(movie);
-                }};
-                countryMovies.put((String) movie.get("country"), movies);
-            } else {
-                countryMovies.get((String) movie.get("country")).add(movie);
-            }
-        }
-        return countryMovies;
-    }
-
-    public static String generateRandomSalt() {
-        return RandomStringUtils.randomAlphanumeric(8);
-    }
-
-    public static void saltThePasswords(ArrayList<Map<String, String>> listOfUsers) {
-        for (Map<String, String> user : listOfUsers) {
-            user.put("salt", generateRandomSalt());
-            user.put("hash", user.get("password") + String.valueOf(user.get("salt")).hashCode());
-        }
-    }
-
-    public static void encryptEmail(ArrayList<Map<String, String>> listOfUsers) {
-        int shifting = 5;
-        for (Map<String, String> user : listOfUsers) {
-            String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            String email = user.get("email").split("@")[0];
-            StringBuilder encryptedEmail = new StringBuilder();
-            for (int i = 0; i < email.length(); i++) {
-                if (alphabet.contains(String.valueOf(email.charAt(i))))
-                    encryptedEmail.append(alphabet.charAt((alphabet.indexOf(email.charAt(i)) + shifting) % 52));
-
-                else
-                    encryptedEmail.append(email.charAt(i));
-
-            }
-            System.out.println(encryptedEmail);
-        }
-    }
-
-    public static boolean passwordCheck(String password) {
-        boolean upper = false, lower = false, number = false;
-        for (int i = 0; i < password.length(); i++) {
-            if (StringUtils.isAllUpperCase(String.valueOf(password.charAt(i)))) {
-                upper = true;
-            } else if (StringUtils.isAllLowerCase(String.valueOf(password.charAt(i)))) {
-                lower = true;
-            } else if (StringUtils.isNumeric(String.valueOf(password.charAt(i)))) {
-                number = true;
-            }
-        }
-        return upper && lower && number && password.length() >= 8;
-    }
-
-    private static boolean validateUsername(String userName) {
-        for (int i = 0; i < userName.length(); i++) {
-            if (!StringUtils.isNoneBlank(String.valueOf(userName.charAt(i))))
-                return false;
-            else if (!(StringUtils.isAlphanumeric(String.valueOf(userName.charAt(i)))) && !"._".contains(String.valueOf(userName.charAt(i))))
-                return false;
-
-        }
-        return true;
-    }
-
-    private static boolean validateDomain(String domain) {
-        if (!domain.contains(".")) return false;
-        for (int i = 0; i < domain.length(); i++) {
-            if (!StringUtils.isNoneBlank(String.valueOf(domain.charAt(i)))) return false;
-            else if (!(StringUtils.isAlphanumeric(String.valueOf(domain.charAt(i)))) && !".-".contains(String.valueOf(domain.charAt(i))))
-                return false;
-        }
-        return true;
-    }
-
-    public static boolean validateEmail(String email) {
-        if (!email.contains("@") || StringUtils.countMatches("@", email) > 1) {
-            return false;
-        } else {
-            String userName = email.split("@")[0];
-            String domain = email.split("@")[1];
-            return validateUsername(userName) && validateDomain(domain);
-        }
-
-    }
-
-    public static boolean cardValidation(String password) {
-        int sumEven = 0, sumOdd = 0;
-        for (int i = password.length() - 1; i > -1; i--) {
-            if (i % 2 == 0 && StringUtils.isNumeric(String.valueOf(password.charAt(i)))) {
-                int sumCf = Character.getNumericValue(password.charAt(i)) * 2;
-                sumEven += sumCf % 10 + sumCf / 10;
-            } else if (StringUtils.isNumeric(String.valueOf(password.charAt(i)))) {
-                sumOdd += Character.getNumericValue(password.charAt(i));
-            }
-        }
-        if ((sumEven + sumOdd) % 10 == 0) {
-            return true;
-        }
-        return false;
-    }
 
     public static void main(String[] args) {
         Map<Object, Object> responseFromServer;
@@ -216,18 +28,18 @@ public class Main {
         }
         for (Map.Entry<Object, Object> entry : responseFromServer.entrySet()) {
             ArrayList<Map<Object, Object>> movies = (ArrayList<Map<Object, Object>>) entry.getValue();
-            System.out.println(getOldestMovie(movies));
-            System.out.println(getNewestMovie(movies));
-            System.out.println(getMostActorsInMovies(movies));
-            System.out.println(getMostAwardsMovie(movies));
-            System.out.println(getLessAwardsMovie(movies));
-            System.out.println(getLongestMovie(movies));
-            System.out.println(getShortestMovie(movies));
-            System.out.println(getBestMakeupMovies(movies));
-            System.out.println(getMapOfMovieCountry(movies));
+            System.out.println(MovieFilters.getOldestMovie(movies));
+            System.out.println(MovieFilters.getNewestMovie(movies));
+            System.out.println(MovieFilters.getMostActorsInMovies(movies));
+            System.out.println(MovieFilters.getMostAwardsMovie(movies));
+            System.out.println(MovieFilters.getLessAwardsMovie(movies));
+            System.out.println(MovieFilters.getLongestMovie(movies));
+            System.out.println(MovieFilters.getShortestMovie(movies));
+            System.out.println(MovieFilters.getBestMakeupMovies(movies));
+            System.out.println(MovieFilters.getMapOfMovieCountry(movies));
         }
         ArrayList<Map<String, String>> listOfUsers = getMaps();
-        saltThePasswords(listOfUsers);
+        Security.saltThePasswords(listOfUsers);
         Scanner myObj = new Scanner(System.in);
         String userName = myObj.nextLine();
         String enteredPassword = myObj.nextLine();
@@ -238,10 +50,11 @@ public class Main {
                 }
             }
         }
-        System.out.println(passwordCheck(listOfUsers.get(1).get("password")));
-        encryptEmail(listOfUsers);
-        System.out.println(cardValidation(listOfUsers.get(0).get("card_number")));
-        System.out.println(validateEmail(listOfUsers.get(1).get("email")));
+        System.out.println(DataValidation.passwordCheck(listOfUsers.get(1).get("password")));
+        Security.encryptEmail(listOfUsers);
+        System.out.println(DataValidation.cardValidation(listOfUsers.getFirst().get("card_number")));
+        System.out.println(DataValidation.validateEmail(listOfUsers.getFirst().get("email")));
+        System.out.println(DataValidation.checkForDuplicateEmail("sduygrwurgwurqwuru@yahoo.com", listOfUsers));
     }
 
     private static ArrayList<Map<String, String>> getMaps() {
@@ -250,7 +63,7 @@ public class Main {
             put("nume", "Ion");
             put("password", "df3213d");
             put("email", "AAASS@yahoo.com");
-            put("card_number", "2222990995257051");
+            put("card_number", "2223577120017656");
         }};
         listOfUsers.add(entry);
         entry = new HashMap<>() {{
