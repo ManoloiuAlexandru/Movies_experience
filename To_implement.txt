@@ -18,4 +18,7 @@
 17.Sa se sparga fișierul in fișiere mici si sa se reorganizeze codul.
 18.Sa se scrie documentația la acest proiect. 
 19.Sa se adauge 10 users noi.
-20.
+20.Sa se scrie o functie care afla in ce an au fost cele mai multe filme.
+21.Sa se implementeze Fuzzy matching pentru numele de filme.  
+22.Se se afle per utilizator ce genre e cel mai intalint la favorite.
+23.
