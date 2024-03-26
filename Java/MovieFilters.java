@@ -134,4 +134,23 @@ public class MovieFilters {
         return finalList;
     }
 
+    public static Integer getYearWithMostMovies(ArrayList<Map<Object, Object>> movies) {
+        LinkedHashMap<Integer, ArrayList<String>> yearsMovie = new LinkedHashMap<>();
+        for (Map<Object, Object> movie : movies) {
+            if (!(yearsMovie.containsKey(movie.get("year")))) {
+                yearsMovie.put((Integer) (movie.get("year")), new ArrayList<>() {{
+                    add(String.valueOf(movie.get("title")));
+                }});
+            } else {
+                yearsMovie.get(movie.get("year")).add(String.valueOf(movie.get("title")));
+            }
+        }
+        Integer maxYear = 0;
+        for (Map.Entry<Integer, ArrayList<String>> year : yearsMovie.entrySet()) {
+            if (maxYear < year.getValue().size()) {
+                maxYear = year.getKey();
+            }
+        }
+        return maxYear;
+    }
 }
