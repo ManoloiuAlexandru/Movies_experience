@@ -37,33 +37,40 @@ public class Main {
             System.out.println(MovieFilters.getShortestMovie(movies));
             System.out.println(MovieFilters.getBestMakeupMovies(movies));
             System.out.println(MovieFilters.getMapOfMovieCountry(movies));
+            System.out.println(MovieFilters.getYearWithMostMovies(movies));
         }
-        ArrayList<Map<String, String>> listOfUsers = getMaps();
+        ArrayList<Map<String, Object>> listOfUsers = getMaps();
         Security.saltThePasswords(listOfUsers);
         Scanner myObj = new Scanner(System.in);
         String userName = myObj.nextLine();
         String enteredPassword = myObj.nextLine();
-        for (Map<String, String> user : listOfUsers) {
+        for (Map<String, Object> user : listOfUsers) {
             if (user.get("nume").equals(userName)) {
                 if ((enteredPassword + user.get("salt").hashCode()).equals(user.get("hash"))) {
                     System.out.println("Correct Password");
                 }
             }
         }
-        System.out.println(DataValidation.passwordCheck(listOfUsers.get(1).get("password")));
+        System.out.println(DataValidation.passwordCheck(String.valueOf(listOfUsers.get(1).get("password"))));
         Security.encryptEmail(listOfUsers);
-        System.out.println(DataValidation.cardValidation(listOfUsers.getFirst().get("card_number")));
-        System.out.println(DataValidation.validateEmail(listOfUsers.getFirst().get("email")));
+        System.out.println(DataValidation.cardValidation(String.valueOf(listOfUsers.getFirst().get("card_number"))));
+        System.out.println(DataValidation.validateEmail(String.valueOf(listOfUsers.getFirst().get("email"))));
         System.out.println(DataValidation.checkForDuplicateEmail("sduygrwurgwurqwuru@yahoo.com", listOfUsers));
+        System.out.println(MovieFilters.getTop5Movies(listOfUsers));
+
     }
 
-    private static ArrayList<Map<String, String>> getMaps() {
-        ArrayList<Map<String, String>> listOfUsers = new ArrayList<>();
-        Map<String, String> entry = new HashMap<>() {{
+    private static ArrayList<Map<String, Object>> getMaps() {
+        ArrayList<Map<String, Object>> listOfUsers = new ArrayList<>();
+        Map<String, Object> entry = new HashMap<>() {{
             put("nume", "Ion");
             put("password", "df3213d");
-            put("email", "AAASS@yahoo.com");
+            put("email", "AAA@SS@yahoo.com");
             put("card_number", "2223577120017656");
+            put("favorite_movies", new ArrayList<String>() {{
+                add("The Shawshank Redemption");
+                add("The Godfather");
+            }});
         }};
         listOfUsers.add(entry);
         entry = new HashMap<>() {{
@@ -71,6 +78,12 @@ public class Main {
             put("email", "s.dfg@.343.4_34@yah.oo.com");
             put("password", "Ad5kfkgfJHH90hjh8y");
             put("card_number", "4847352989063094");
+            put("favorite_movies", new ArrayList<String>() {{
+                add("Spirited Away");
+                add("The Lord of the Rings: The Fellowship of the Ring");
+                add("Good Will Hunting");
+                add("The Matrix");
+            }});
         }};
         listOfUsers.add(entry);
         entry = new HashMap<>() {{
@@ -78,6 +91,14 @@ public class Main {
             put("email", "dsfsdgfdf@yahoo.com");
             put("password", "df322fd3n32K13d");
             put("card_number", "4847352989087694");
+            put("favorite_movies", new ArrayList<String>() {{
+                add("The Shawshank Redemption");
+                add("The Godfather");
+                add("The Lord of the Rings: The Fellowship of the Ring");
+                add("Parasite");
+                add("Good Will Hunting");
+                add("The Matrix");
+            }});
         }};
         listOfUsers.add(entry);
         return listOfUsers;
