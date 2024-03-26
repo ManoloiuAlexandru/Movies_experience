@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class MovieFilters {
     public static Map<Object, Object> getOldestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
@@ -96,6 +94,44 @@ public class MovieFilters {
             }
         }
         return countryMovies;
+    }
+
+    public static ArrayList<String> getTop5Movies(ArrayList<Map<String, Object>> listOfUsers) {
+        HashMap<String, Integer> moviesCount = new HashMap<>();
+        ArrayList<String> finalList = new ArrayList<>();
+        for (Map<String, Object> user : listOfUsers) {
+            ArrayList<String> favoriteMovies = (ArrayList<String>) user.get("favorite_movies");
+            for (String movie : favoriteMovies) {
+                if (!(moviesCount.containsKey(movie))) {
+                    moviesCount.put(movie, Collections.frequency(favoriteMovies, movie));
+                } else {
+                    moviesCount.replace(movie, moviesCount.get(movie) + 1);
+                }
+            }
+        }
+        ArrayList<Integer> myArray = new ArrayList<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : moviesCount.entrySet()) {
+            myArray.add(entry.getValue());
+        }
+        myArray.sort(Collections.reverseOrder());
+        for (Integer data : myArray) {
+            for (Map.Entry<String, Integer> entry : moviesCount.entrySet()) {
+                if (entry.getValue().equals(data)) {
+                    sortedMap.put(entry.getKey(), data);
+                }
+            }
+        }
+        int i = 0;
+        Set<String> keys = sortedMap.keySet();
+        for (String key : keys) {
+            finalList.add(key);
+            if (i == 4) {
+                break;
+            }
+            i++;
+        }
+        return finalList;
     }
 
 }
