@@ -1,3 +1,7 @@
+from data import *
+from functii import *
+
+
 list_of_movies = [
     {
         "title": "The Shawshank Redemption",
@@ -230,73 +234,20 @@ list_of_movies = [
             "Golden Globe Award - Best Actor - Motion Picture Drama (Tom Hanks)",
 
         ]
-    }
-]
-list_of_users = [
-    {"nume": "Ion", "password": "df3213d", "email": "s@yahoo.com", "card_number": "2222990995257051"},
-    {"nume": "Vasile", "password": "dfq3fc", "email": "s.dfg.343.@4_34@yah.oo.com", "card_number": "4624748233249080"},
-    {"nume": "Mircea", "password": "df322fd3n3J413d", "email": "dsfsdgfdf@yahoo.com",
-     "card_number": "2223 0076 4872 6984"},
-    {"nume": "Ioana", "password": "qwe23f", "email": "sdfshadf@yahoo.com", "card_number": "2223577120017656"},
-    {"nume": "Ema", "password": "df3fwf32213d", "email": "dsfgdsfHH@yahoo.com", "card_number": "5105105105105100"}
+    },
+
+
 ]
 
-# 1. Sa se creeze o functie care spune ce film din lista de filme este cel mai vechi.
-
-def get_oldest_movie(list_of_movies):
-    oldest_movie = list_of_movies[0]
-    for movie in list_of_movies:
-        if oldest_movie["year"] > movie["year"]:
-            oldest_movie = movie
-    return oldest_movie
-
-print(get_oldest_movie(list_of_movies))
-
-print([movie for movie in list_of_movies if movie.get("year") == min([movie.get("year") for movie in list_of_movies])][0])
-
-# 2. Sa se creeze o functie care spune ce film din lista de filme este cel mai nou.
-
-def get_newest_movie(list_of_movies:list):
-    newest_movie = list_of_movies[0]
-    for movie in list_of_movies:
-        if newest_movie["year"] < movie["year"]:
-            newest_movie = movie
-    return newest_movie
+#6.Sa se adauge in lista de filme 5 filme noi.
+list_of_movies.extend(catalin_movies)
+list_of_movies.append(new_movie)
 
 
-print(get_newest_movie(list_of_movies))
+# print(get_longest_movie(list_of_movies))
+# print(get_shortest_movie(list_of_movies))
 
-print([movie for movie in list_of_movies if movie.get("year") == max([movie.get("year") for movie in list_of_movies])][0])
+# print(get_makeup_award(list_of_movies))
+# print(country_movie(list_of_movies))
 
-# 3. Sa se creeze o functie care spune ce film din lista de filme are cei mai multi actori.
-
-def get_max_actors(list_of_movies):
-    max_actors = list_of_movies[0]
-    for actors_in_movies in list_of_movies:
-        if len(max_actors["actors"]) < len(actors_in_movies["actors"]):
-           max_actors = actors_in_movies
-    return max_actors
-
-print(get_max_actors(list_of_movies))
-
-# 4. Sa se creeze o functie care spune ce film din lista de filme are cele mai multe premii.
-
-def get_most_awards(list_of_movies):
-    most_awards = list_of_movies[0]
-    for movie in list_of_movies:
-        if len(most_awards["awards"]) < len(movie["awards"]):
-            most_awards = movie
-    return most_awards
-
-print(get_most_awards(list_of_movies))
-
-# 5.Sa se creeze o functie care spune ce film din lista de filme are cele mai putine premii.
-
-def get_less_awards(list_of_movies):
-    less_awards = list_of_movies[0]
-    for movie in list_of_movies:
-        if len(less_awards["awards"]) > len(movie["awards"]) and 2010 > movie["year"] > 2000:
-            less_awards = movie
-    return less_awards
-
-print(get_less_awards(list_of_movies))
+print(ceva)
