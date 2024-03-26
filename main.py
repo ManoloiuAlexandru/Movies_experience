@@ -1,7 +1,6 @@
 from data import *
 from functii import *
 
-
 list_of_movies = [
     {
         "title": "The Shawshank Redemption",
@@ -236,13 +235,11 @@ list_of_movies = [
         ]
     },
 
-
 ]
 
-#6.Sa se adauge in lista de filme 5 filme noi.
+# 6.Sa se adauge in lista de filme 5 filme noi.
 list_of_movies.extend(catalin_movies)
 list_of_movies.append(new_movie)
-
 
 # print(get_longest_movie(list_of_movies))
 # print(get_shortest_movie(list_of_movies))
