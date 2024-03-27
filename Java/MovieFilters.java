@@ -1,3 +1,5 @@
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.*;
 
 public class MovieFilters {
@@ -152,5 +154,33 @@ public class MovieFilters {
             }
         }
         return maxYear;
+    }
+
+    public static void getMostGenreInFavorite(ArrayList<Map<String, Object>> listOfUsers, ArrayList<Map<Object, Object>> movies) {
+        for (Map<String, Object> user : listOfUsers) {
+            Map<String, Integer> genreFavoriteMovies = new HashMap<>();
+            for (String movie : (ArrayList<String>) user.get("favorite_movies")) {
+                for (Map<Object, Object> movieToCheck : movies) {
+                    if (movie.equals(movieToCheck.get("title"))) {
+                        for (String genre : (ArrayList<String>) movieToCheck.get("genre")) {
+                            if (!(genreFavoriteMovies.containsKey(genre))) {
+                                genreFavoriteMovies.put(genre, 1);
+                            } else {
+                                genreFavoriteMovies.replace(genre, genreFavoriteMovies.get(genre) + 1);
+                            }
+                        }
+                    }
+                }
+            }
+            int maxGenre = 0;
+            String topGenre = null;
+            for (Map.Entry<String, Integer> genre : genreFavoriteMovies.entrySet()) {
+                if (maxGenre < genre.getValue()) {
+                    maxGenre = genre.getValue();
+                    topGenre = genre.getKey();
+                }
+            }
+            System.out.println(STR."\{user.get("nume")} \{topGenre}");
+        }
     }
 }
