@@ -20,4 +20,4 @@
 19.Sa se adauge 10 users noi.
 20.Sa se scrie o functie care afla in ce an au fost cele mai multe filme.
 21.Se se afle per utilizator ce genre e cel mai intalint la favorite.
-22.
+22.Se se creeze clasa film, care are ca si campuri toate datele pe care noi le-am folosit pana acum ex:titlu,director;
