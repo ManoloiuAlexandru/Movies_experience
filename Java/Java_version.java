@@ -27,6 +27,7 @@ public class Main {
             throw new RuntimeException(e);
         }
         ArrayList<Map<String, Object>> listOfUsers = getMaps();
+        ArrayList<Movie> listOfMovies = new ArrayList<>();
 //        Security.saltThePasswords(listOfUsers);
 //        Scanner myObj = new Scanner(System.in);
 //        String userName = myObj.nextLine();
@@ -43,21 +44,26 @@ public class Main {
 //        System.out.println(DataValidation.cardValidation(String.valueOf(listOfUsers.getFirst().get("card_number"))));
 //        System.out.println(DataValidation.validateEmail(String.valueOf(listOfUsers.getFirst().get("email"))));
 //        System.out.println(DataValidation.checkForDuplicateEmail("sduygrwurgwurqwuru@yahoo.com", listOfUsers));
-//        System.out.println(MovieFilters.getTop5Movies(listOfUsers));
+        System.out.println(MovieFilters.getTop5Movies(listOfUsers));
         for (Map.Entry<Object, Object> entry : responseFromServer.entrySet()) {
             ArrayList<Map<Object, Object>> movies = (ArrayList<Map<Object, Object>>) entry.getValue();
-//            System.out.println(MovieFilters.getOldestMovie(movies));
-//            System.out.println(MovieFilters.getNewestMovie(movies));
-//            System.out.println(MovieFilters.getMostActorsInMovies(movies));
-//            System.out.println(MovieFilters.getMostAwardsMovie(movies));
-//            System.out.println(MovieFilters.getLessAwardsMovie(movies));
-//            System.out.println(MovieFilters.getLongestMovie(movies));
-//            System.out.println(MovieFilters.getShortestMovie(movies));
-//            System.out.println(MovieFilters.getBestMakeupMovies(movies));
-//            System.out.println(MovieFilters.getMapOfMovieCountry(movies));
-//            System.out.println(MovieFilters.getYearWithMostMovies(movies));
-            MovieFilters.getMostGenreInFavorite(listOfUsers, movies);
+            for (Map<Object, Object> movie : movies) {
+                listOfMovies.add(new Movie((String) movie.get("title"), (Integer) movie.get("year"), String.valueOf(movie.get("director")),
+                        (ArrayList<String>) (movie.get("genre")), (Double) movie.get("imdb_rating"), (ArrayList<String>) movie.get("actors"),
+                        (Integer) movie.get("runtime"), String.valueOf(movie.get("country")), (ArrayList<Object>) movie.get("awards")));
+            }
         }
+        System.out.println(MovieFilters.getOldestMovie(listOfMovies));
+        System.out.println(MovieFilters.getNewestMovie(listOfMovies));
+        System.out.println(MovieFilters.getMostActorsInMovies(listOfMovies));
+        System.out.println(MovieFilters.getMostAwardsMovie(listOfMovies));
+        System.out.println(MovieFilters.getLessAwardsMovie(listOfMovies));
+        System.out.println(MovieFilters.getLongestMovie(listOfMovies));
+        System.out.println(MovieFilters.getShortestMovie(listOfMovies));
+        System.out.println(MovieFilters.getBestMakeupMovies(listOfMovies));
+        System.out.println(MovieFilters.getMapOfMovieCountry(listOfMovies));
+        System.out.println(MovieFilters.getYearWithMostMovies(listOfMovies));
+        MovieFilters.getMostGenreInFavorite(listOfUsers, listOfMovies);
     }
 
     private static ArrayList<Map<String, Object>> getMaps() {
