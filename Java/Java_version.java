@@ -26,38 +26,38 @@ public class Main {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        ArrayList<Map<String, Object>> listOfUsers = getMaps();
+//        Security.saltThePasswords(listOfUsers);
+//        Scanner myObj = new Scanner(System.in);
+//        String userName = myObj.nextLine();
+//        String enteredPassword = myObj.nextLine();
+//        for (Map<String, Object> user : listOfUsers) {
+//            if (user.get("nume").equals(userName)) {
+//                if ((enteredPassword + user.get("salt").hashCode()).equals(user.get("hash"))) {
+//                    System.out.println("Correct Password");
+//                }
+//            }
+//        }
+//        System.out.println(DataValidation.passwordCheck(String.valueOf(listOfUsers.get(1).get("password"))));
+//        Security.encryptEmail(listOfUsers);
+//        System.out.println(DataValidation.cardValidation(String.valueOf(listOfUsers.getFirst().get("card_number"))));
+//        System.out.println(DataValidation.validateEmail(String.valueOf(listOfUsers.getFirst().get("email"))));
+//        System.out.println(DataValidation.checkForDuplicateEmail("sduygrwurgwurqwuru@yahoo.com", listOfUsers));
+//        System.out.println(MovieFilters.getTop5Movies(listOfUsers));
         for (Map.Entry<Object, Object> entry : responseFromServer.entrySet()) {
             ArrayList<Map<Object, Object>> movies = (ArrayList<Map<Object, Object>>) entry.getValue();
-            System.out.println(MovieFilters.getOldestMovie(movies));
-            System.out.println(MovieFilters.getNewestMovie(movies));
-            System.out.println(MovieFilters.getMostActorsInMovies(movies));
-            System.out.println(MovieFilters.getMostAwardsMovie(movies));
-            System.out.println(MovieFilters.getLessAwardsMovie(movies));
-            System.out.println(MovieFilters.getLongestMovie(movies));
-            System.out.println(MovieFilters.getShortestMovie(movies));
-            System.out.println(MovieFilters.getBestMakeupMovies(movies));
-            System.out.println(MovieFilters.getMapOfMovieCountry(movies));
-            System.out.println(MovieFilters.getYearWithMostMovies(movies));
+//            System.out.println(MovieFilters.getOldestMovie(movies));
+//            System.out.println(MovieFilters.getNewestMovie(movies));
+//            System.out.println(MovieFilters.getMostActorsInMovies(movies));
+//            System.out.println(MovieFilters.getMostAwardsMovie(movies));
+//            System.out.println(MovieFilters.getLessAwardsMovie(movies));
+//            System.out.println(MovieFilters.getLongestMovie(movies));
+//            System.out.println(MovieFilters.getShortestMovie(movies));
+//            System.out.println(MovieFilters.getBestMakeupMovies(movies));
+//            System.out.println(MovieFilters.getMapOfMovieCountry(movies));
+//            System.out.println(MovieFilters.getYearWithMostMovies(movies));
+            MovieFilters.getMostGenreInFavorite(listOfUsers, movies);
         }
-        ArrayList<Map<String, Object>> listOfUsers = getMaps();
-        Security.saltThePasswords(listOfUsers);
-        Scanner myObj = new Scanner(System.in);
-        String userName = myObj.nextLine();
-        String enteredPassword = myObj.nextLine();
-        for (Map<String, Object> user : listOfUsers) {
-            if (user.get("nume").equals(userName)) {
-                if ((enteredPassword + user.get("salt").hashCode()).equals(user.get("hash"))) {
-                    System.out.println("Correct Password");
-                }
-            }
-        }
-        System.out.println(DataValidation.passwordCheck(String.valueOf(listOfUsers.get(1).get("password"))));
-        Security.encryptEmail(listOfUsers);
-        System.out.println(DataValidation.cardValidation(String.valueOf(listOfUsers.getFirst().get("card_number"))));
-        System.out.println(DataValidation.validateEmail(String.valueOf(listOfUsers.getFirst().get("email"))));
-        System.out.println(DataValidation.checkForDuplicateEmail("sduygrwurgwurqwuru@yahoo.com", listOfUsers));
-        System.out.println(MovieFilters.getTop5Movies(listOfUsers));
-
     }
 
     private static ArrayList<Map<String, Object>> getMaps() {
