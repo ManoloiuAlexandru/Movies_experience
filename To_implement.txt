@@ -18,6 +18,8 @@
 17.Sa se sparga fișierul in fișiere mici si sa se reorganizeze codul.
 18.Sa se scrie documentația la acest proiect. 
 19.Sa se adauge 10 users noi.
-20.Sa se scrie o functie care afla in ce an au fost cele mai multe filme.
-21.Se se afle per utilizator ce genre e cel mai intalint la favorite.
-22.Se se creeze clasa film, care are ca si campuri toate datele pe care noi le-am folosit pana acum ex:titlu,director;
+20.Sa se scrie o functie care proceseaza datele si le aduce la o froma standard.
+21.Sa se scrie o functie care afla in ce an au fost cele mai multe filme.
+22.Se se afle per utilizator ce genre e cel mai intalint la favorite.
+23.Sa se afle ce regizor a castigat cele mai multe premii.
+24.Se se creeze clasa film, care are ca si campuri toate datele pe care noi le-am folosit pana acum ex:titlu,director;
