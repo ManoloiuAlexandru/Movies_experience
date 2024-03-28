@@ -17,7 +17,8 @@ list_of_movies = [
                 "category": "Best Picture"
             },
             {
-
+                "name": "Golden Globe Award",
+                "category": "Best Drama Film"
             }
         ]
     },
