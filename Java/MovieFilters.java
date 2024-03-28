@@ -1,98 +1,96 @@
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.util.*;
 
 public class MovieFilters {
-    public static Map<Object, Object> getOldestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> oldestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("year") < (int) oldestMovie.get("year")) {
+    public static Movie getOldestMovie(ArrayList<Movie> listOfMovies) {
+        Movie oldestMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if (movie.getYear() < oldestMovie.getYear()) {
                 oldestMovie = movie;
             }
         }
         return oldestMovie;
     }
 
-    public static Map<Object, Object> getNewestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> newestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("year") > (int) newestMovie.get("year")) {
+    public static Movie getNewestMovie(ArrayList<Movie> listOfMovies) {
+        Movie newestMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if (movie.getYear() > newestMovie.getYear()) {
                 newestMovie = movie;
             }
         }
         return newestMovie;
     }
 
-    public static Map<Object, Object> getMostActorsInMovies(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> mostActorsMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<?>) movie.get("actors")).size() > ((ArrayList<?>) mostActorsMovie.get("actors")).size()) {
+    public static Movie getMostActorsInMovies(ArrayList<Movie> listOfMovies) {
+        Movie mostActorsMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if ((movie.getActors()).size() > (mostActorsMovie.getActors()).size()) {
                 mostActorsMovie = movie;
             }
         }
         return mostActorsMovie;
     }
 
-    public static Map<Object, Object> getMostAwardsMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> mostAwardsMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<?>) movie.get("awards")).size() > ((ArrayList<?>) mostAwardsMovie.get("awards")).size()) {
+    public static Movie getMostAwardsMovie(ArrayList<Movie> listOfMovies) {
+        Movie mostAwardsMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if (movie.getAwards().size() > (mostAwardsMovie.getAwards()).size()) {
                 mostAwardsMovie = movie;
             }
         }
         return mostAwardsMovie;
     }
 
-    public static Map<Object, Object> getLessAwardsMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> lessAwardedMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<?>) movie.get("awards")).size() < ((ArrayList<?>) lessAwardedMovie.get("awards")).size()) {
+    public static Movie getLessAwardsMovie(ArrayList<Movie> listOfMovies) {
+        Movie lessAwardedMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if ((movie.getAwards()).size() < (lessAwardedMovie.getAwards()).size()) {
                 lessAwardedMovie = movie;
             }
         }
         return lessAwardedMovie;
     }
 
-    public static Map<Object, Object> getLongestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> longestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("runtime") > (int) longestMovie.get("runtime")) {
+    public static Movie getLongestMovie(ArrayList<Movie> listOfMovies) {
+        Movie longestMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if (movie.getRunTime() > longestMovie.getRunTime()) {
                 longestMovie = movie;
             }
         }
         return longestMovie;
     }
 
-    public static Map<Object, Object> getShortestMovie(ArrayList<Map<Object, Object>> listOfMovies) {
-        Map<Object, Object> shortestMovie = listOfMovies.getFirst();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if ((int) movie.get("runtime") < (int) shortestMovie.get("runtime")) {
+    public static Movie getShortestMovie(ArrayList<Movie> listOfMovies) {
+        Movie shortestMovie = listOfMovies.getFirst();
+        for (Movie movie : listOfMovies) {
+            if (movie.getRunTime() < shortestMovie.getRunTime()) {
                 shortestMovie = movie;
             }
         }
         return shortestMovie;
     }
 
-    public static ArrayList<Map<Object, Object>> getBestMakeupMovies(ArrayList<Map<Object, Object>> listOfMovies) {
-        ArrayList<Map<Object, Object>> arrayOfBestMakeup = new ArrayList<>();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (((ArrayList<String>) movie.get("awards")).contains("Academy Award - Best Makeup")) {
+    public static ArrayList<Movie> getBestMakeupMovies(ArrayList<Movie> listOfMovies) {
+        ArrayList<Movie> arrayOfBestMakeup = new ArrayList<>();
+        for (Movie movie : listOfMovies) {
+            if (movie.getAwards().contains("Academy Award - Best Makeup")) {
                 arrayOfBestMakeup.add(movie);
             }
         }
         return arrayOfBestMakeup;
     }
 
-    public static HashMap<String, ArrayList<Map<Object, Object>>> getMapOfMovieCountry(ArrayList<Map<Object, Object>> listOfMovies) {
-        HashMap<String, ArrayList<Map<Object, Object>>> countryMovies = new HashMap<>();
-        for (Map<Object, Object> movie : listOfMovies) {
-            if (!(countryMovies.containsKey(movie.get("country")))) {
-                ArrayList<Map<Object, Object>> movies = new ArrayList<>() {{
+    public static HashMap<String, ArrayList<Movie>> getMapOfMovieCountry(ArrayList<Movie> listOfMovies) {
+        HashMap<String, ArrayList<Movie>> countryMovies = new HashMap<>();
+        for (Movie movie : listOfMovies) {
+            if (!(countryMovies.containsKey(movie.getCountry()))) {
+                ArrayList<Movie> movies = new ArrayList<>() {{
                     add(movie);
                 }};
-                countryMovies.put((String) movie.get("country"), movies);
+                countryMovies.put(movie.getCountry(), movies);
             } else {
-                countryMovies.get((String) movie.get("country")).add(movie);
+                countryMovies.get(movie.getCountry()).add(movie);
             }
         }
         return countryMovies;
@@ -136,33 +134,35 @@ public class MovieFilters {
         return finalList;
     }
 
-    public static Integer getYearWithMostMovies(ArrayList<Map<Object, Object>> movies) {
+    public static Integer getYearWithMostMovies(ArrayList<Movie> movies) {
         LinkedHashMap<Integer, ArrayList<String>> yearsMovie = new LinkedHashMap<>();
-        for (Map<Object, Object> movie : movies) {
-            if (!(yearsMovie.containsKey(movie.get("year")))) {
-                yearsMovie.put((Integer) (movie.get("year")), new ArrayList<>() {{
-                    add(String.valueOf(movie.get("title")));
+        for (Movie movie : movies) {
+            if (!(yearsMovie.containsKey(movie.getYear()))) {
+                yearsMovie.put((movie.getYear()), new ArrayList<>() {{
+                    add(String.valueOf(movie.getTitle()));
                 }});
             } else {
-                yearsMovie.get(movie.get("year")).add(String.valueOf(movie.get("title")));
+                yearsMovie.get(movie.getYear()).add(String.valueOf(movie.getTitle()));
             }
         }
-        Integer maxYear = 0;
+        int maxYear = 0;
+        int yearWithMostMovies = 0;
         for (Map.Entry<Integer, ArrayList<String>> year : yearsMovie.entrySet()) {
             if (maxYear < year.getValue().size()) {
-                maxYear = year.getKey();
+                maxYear = year.getValue().size();
+                yearWithMostMovies = year.getKey();
             }
         }
-        return maxYear;
+        return yearWithMostMovies;
     }
 
-    public static void getMostGenreInFavorite(ArrayList<Map<String, Object>> listOfUsers, ArrayList<Map<Object, Object>> movies) {
+    public static void getMostGenreInFavorite(ArrayList<Map<String, Object>> listOfUsers, ArrayList<Movie> movies) {
         for (Map<String, Object> user : listOfUsers) {
             Map<String, Integer> genreFavoriteMovies = new HashMap<>();
             for (String movie : (ArrayList<String>) user.get("favorite_movies")) {
-                for (Map<Object, Object> movieToCheck : movies) {
-                    if (movie.equals(movieToCheck.get("title"))) {
-                        for (String genre : (ArrayList<String>) movieToCheck.get("genre")) {
+                for (Movie movieToCheck : movies) {
+                    if (movie.equals(movieToCheck.getTitle())) {
+                        for (String genre : movieToCheck.getGenre()) {
                             if (!(genreFavoriteMovies.containsKey(genre))) {
                                 genreFavoriteMovies.put(genre, 1);
                             } else {
@@ -183,4 +183,6 @@ public class MovieFilters {
             System.out.println(STR."\{user.get("nume")} \{topGenre}");
         }
     }
+
+
 }
