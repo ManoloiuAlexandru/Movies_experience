@@ -96,11 +96,11 @@ public class MovieFilters {
         return countryMovies;
     }
 
-    public static ArrayList<String> getTop5Movies(ArrayList<Map<String, Object>> listOfUsers) {
+    public static ArrayList<String> getTop5Movies(ArrayList<User> listOfUsers) {
         HashMap<String, Integer> moviesCount = new HashMap<>();
         ArrayList<String> finalList = new ArrayList<>();
-        for (Map<String, Object> user : listOfUsers) {
-            ArrayList<String> favoriteMovies = (ArrayList<String>) user.get("favorite_movies");
+        for (User user : listOfUsers) {
+            ArrayList<String> favoriteMovies = user.getFavoriteMovies();
             for (String movie : favoriteMovies) {
                 if (!(moviesCount.containsKey(movie))) {
                     moviesCount.put(movie, Collections.frequency(favoriteMovies, movie));
@@ -156,10 +156,10 @@ public class MovieFilters {
         return yearWithMostMovies;
     }
 
-    public static void getMostGenreInFavorite(ArrayList<Map<String, Object>> listOfUsers, ArrayList<Movie> movies) {
-        for (Map<String, Object> user : listOfUsers) {
+    public static void getMostGenreInFavorite(ArrayList<User> listOfUsers, ArrayList<Movie> movies) {
+        for (User user : listOfUsers) {
             Map<String, Integer> genreFavoriteMovies = new HashMap<>();
-            for (String movie : (ArrayList<String>) user.get("favorite_movies")) {
+            for (String movie : user.getFavoriteMovies()) {
                 for (Movie movieToCheck : movies) {
                     if (movie.equals(movieToCheck.getTitle())) {
                         for (String genre : movieToCheck.getGenre()) {
@@ -180,7 +180,7 @@ public class MovieFilters {
                     topGenre = genre.getKey();
                 }
             }
-            System.out.println(STR."\{user.get("nume")} \{topGenre}");
+            System.out.println(STR."\{user.getName()} \{topGenre}");
         }
     }
 

@@ -8,18 +8,18 @@ public class Security {
         return RandomStringUtils.randomAlphanumeric(8);
     }
 
-    public static void saltThePasswords(ArrayList<Map<String, String>> listOfUsers) {
-        for (Map<String, String> user : listOfUsers) {
-            user.put("salt", generateRandomSalt());
-            user.put("hash", user.get("password") + String.valueOf(user.get("salt")).hashCode());
+    public static void saltThePasswords(ArrayList<User> listOfUsers) {
+        for (User user : listOfUsers) {
+            user.setSalt(generateRandomSalt());
+            user.setHash(user.getPassword() + String.valueOf(user.getSalt()).hashCode());
         }
     }
 
-    public static void encryptEmail(ArrayList<Map<String, String>> listOfUsers) {
+    public static void encryptEmail(ArrayList<User> listOfUsers) {
         int shifting = 5;
-        for (Map<String, String> user : listOfUsers) {
+        for (User user : listOfUsers) {
             String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            String email = user.get("email").split("@")[0];
+            String email = user.getEmail().split("@")[0];
             StringBuilder encryptedEmail = new StringBuilder();
             for (int i = 0; i < email.length(); i++) {
                 if (alphabet.contains(String.valueOf(email.charAt(i))))
@@ -29,7 +29,7 @@ public class Security {
                     encryptedEmail.append(email.charAt(i));
 
             }
-            encryptedEmail.append(user.get("email").split("@")[1]);
+            encryptedEmail.append(user.getEmail().split("@")[1]);
             System.out.println(encryptedEmail);
         }
     }

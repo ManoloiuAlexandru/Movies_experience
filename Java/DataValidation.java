@@ -66,9 +66,9 @@ public class DataValidation {
         return false;
     }
 
-    public static boolean checkForDuplicateEmail(String email, ArrayList<Map<String, String>> listOfUsers) {
-        for (Map<String, String> user : listOfUsers) {
-            if (user.get("email").equals(email)) {
+    public static boolean checkForDuplicateEmail(String email, ArrayList<User> listOfUsers) {
+        for (User user : listOfUsers) {
+            if (user.getEmail().equals(email)) {
                 return false;
             }
         }
