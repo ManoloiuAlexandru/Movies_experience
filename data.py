@@ -93,3 +93,12 @@ catalin_movies = [
     }
 ]
 ceva = "ceva"
+
+list_of_users = [
+    {"nume": "Ion", "password": "df3213d", "email": "s@yahoo.com", "card_number": "2222990995257051"},
+    {"nume": "Vasile", "password": "dfq3fc", "email": "s.dfg.343.@4_34@yah.oo.com", "card_number": "4624748233249080"},
+    {"nume": "Mircea", "password": "df322fd3n3413d", "email": "dsfsdgfdf@yahoo.com",
+     "card_number": "2223 0076 4872 6984"},
+    {"nume": "Ioana", "password": "qwe23f", "email": "sdfshadf@yahoo.com", "card_number": "2223577120017656"},
+    {"nume": "Ema", "password": "Adf3fwf32213d", "email": "dsfgdsfHH@yahoo.com", "card_number": "5105105105105100"}
+]
