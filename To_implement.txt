@@ -22,4 +22,7 @@
 21.Sa se scrie o functie care afla in ce an au fost cele mai multe filme.
 22.Se se afle per utilizator ce genre e cel mai intalint la favorite.
 23.Sa se afle ce regizor a castigat cele mai multe premii.
-24.Se se creeze clasa film, care are ca si campuri toate datele pe care noi le-am folosit pana acum ex:titlu,director;
+24.Sa se creeze clasa film, care are ca si campuri toate datele pe care noi le-am folosit pana acum ex:titlu,director;
+25.Sa se creeze clasa user, care are ca si campuri toate datele pe care noi le-am folosit pana acum.
+26.Filemele au un cod de bare sa se implementeze 2 metode care valideaza acel code de bare.(ISBN-10 si ISBN-13).
+27.

@@ -241,10 +241,15 @@ list_of_movies = [
 list_of_movies.extend(catalin_movies)
 list_of_movies.append(new_movie)
 
-# print(get_longest_movie(list_of_movies))
+print(get_longest_movie(list_of_movies))
 # print(get_shortest_movie(list_of_movies))
 
 # print(get_makeup_award(list_of_movies))
 # print(country_movie(list_of_movies))
 
 print(ceva)
+
+for user in list_of_users:
+    print(is_strong_password(user.get("password")))
+
+
