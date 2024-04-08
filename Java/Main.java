@@ -28,17 +28,17 @@ public class Main {
         }
         ArrayList<User> listOfUsers = getMaps();
         ArrayList<Movie> listOfMovies = new ArrayList<>();
-        Security.saltThePasswords(listOfUsers);
-        Scanner myObj = new Scanner(System.in);
-        String userName = myObj.nextLine();
-        String enteredPassword = myObj.nextLine();
-        for (User user : listOfUsers) {
-            if (user.getName().equals(userName)) {
-                if ((enteredPassword + user.getSalt().hashCode()).equals(user.getHash())) {
-                    System.out.println("Correct Password");
-                }
-            }
-        }
+//        Security.saltThePasswords(listOfUsers);
+//        Scanner myObj = new Scanner(System.in);
+//        String userName = myObj.nextLine();
+//        String enteredPassword = myObj.nextLine();
+//        for (User user : listOfUsers) {
+//            if (user.getName().equals(userName)) {
+//                if ((enteredPassword + user.getSalt().hashCode()).equals(user.getHash())) {
+//                    System.out.println("Correct Password");
+//                }
+//            }
+//        }
         System.out.println(DataValidation.passwordCheck(String.valueOf(listOfUsers.get(1).getPassword())));
         Security.encryptEmail(listOfUsers);
         System.out.println(DataValidation.cardValidation(String.valueOf(listOfUsers.getFirst().getCardNumber())));
@@ -50,7 +50,7 @@ public class Main {
             for (Map<Object, Object> movie : movies) {
                 listOfMovies.add(new Movie((String) movie.get("title"), (Integer) movie.get("year"), String.valueOf(movie.get("director")),
                         (ArrayList<String>) (movie.get("genre")), (Double) movie.get("imdb_rating"), (ArrayList<String>) movie.get("actors"),
-                        (Integer) movie.get("runtime"), String.valueOf(movie.get("country")), (ArrayList<Object>) movie.get("awards")));
+                        (Integer) movie.get("runtime"), String.valueOf(movie.get("country")), (ArrayList<Object>) movie.get("awards"), (String) movie.get("ISBN")));
             }
         }
 //        System.out.println(MovieFilters.getOldestMovie(listOfMovies));

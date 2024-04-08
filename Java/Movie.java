@@ -12,7 +12,9 @@ public class Movie {
     private final String country;
     private ArrayList<String> awards;
 
-    public Movie(String title, Integer year, String director, ArrayList<String> genre, Double imdbRating, ArrayList<String> actors, Integer runTime, String country, ArrayList<Object> awards) {
+    private String ISBNCode;
+
+    public Movie(String title, Integer year, String director, ArrayList<String> genre, Double imdbRating, ArrayList<String> actors, Integer runTime, String country, ArrayList<Object> awards, String ISBNCode) {
         this.title = title;
         this.year = year;
         this.director = director;
@@ -22,6 +24,7 @@ public class Movie {
         this.runTime = runTime;
         this.country = country;
         setAwards(awards);
+        setISBNCode(ISBNCode);
     }
 
     public void setAwards(ArrayList<Object> awards) {
@@ -35,6 +38,33 @@ public class Movie {
             }
         }
         this.awards = correctAwards;
+    }
+
+    public void setISBNCode(String ISBNCode) {
+        if (ISBNCode.length() != 10) {
+            this.ISBNCode = "";
+        }
+        int sumOfCf = 0;
+        int counter = 10;
+        String ISBNCodeOriginal=ISBNCode;
+        String copyOfCode = "";
+        if (ISBNCode.charAt(ISBNCode.length() - 1) == 'X' || ISBNCode.length() == 10) {
+            while (!ISBNCode.isEmpty()) {
+                if (ISBNCode.charAt(0) == 'X') {
+                    sumOfCf += 10;
+                } else {
+                    sumOfCf += counter * Character.digit(ISBNCode.charAt(0),10);
+                }
+                copyOfCode = ISBNCode.substring(1);
+                ISBNCode = copyOfCode;
+                counter--;
+            }
+            if (sumOfCf % 11 != 0) {
+                this.ISBNCode = "";
+            } else {
+                this.ISBNCode = ISBNCodeOriginal;
+            }
+        }
     }
 
     public Integer getYear() {
