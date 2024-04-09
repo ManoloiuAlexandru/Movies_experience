@@ -41,30 +41,68 @@ public class Movie {
     }
 
     public void setISBNCode(String ISBNCode) {
+        if (ISBNCode.length() == 10) {
+            this.ISBNCode = ISBN10(ISBNCode);
+        } else if (ISBNCode.length() == 13) {
+            this.ISBNCode = ISBN13(ISBNCode);
+        }
+    }
+
+    private String ISBN13(String isbnCode) {
+        int sumOfCf = 0;
+        int counter = 1;
+        String ISBNCodeOriginal = isbnCode;
+        String copyOfCode;
+        if (isbnCode.charAt(isbnCode.length() - 1) == 'X' || isbnCode.length() == 13) {
+            while (!isbnCode.isEmpty()) {
+                if (isbnCode.charAt(0) == 'X') {
+                    sumOfCf += 10;
+                } else {
+                    sumOfCf += counter * Character.digit(isbnCode.charAt(0), 10);
+                }
+                copyOfCode = isbnCode.substring(1);
+                isbnCode = copyOfCode;
+                if (counter == 1) {
+                    counter = 3;
+                } else {
+                    counter = 1;
+                }
+            }
+            if (sumOfCf % 10 == 0) {
+                return ISBNCodeOriginal;
+            } else {
+                return "";
+            }
+        }
+        return "";
+    }
+
+    private String ISBN10(String ISBNCode) {
         if (ISBNCode.length() != 10) {
-            this.ISBNCode = "";
+            return "";
         }
         int sumOfCf = 0;
         int counter = 10;
-        String ISBNCodeOriginal=ISBNCode;
-        String copyOfCode = "";
+        String ISBNCodeOriginal = ISBNCode;
+        String copyOfCode;
         if (ISBNCode.charAt(ISBNCode.length() - 1) == 'X' || ISBNCode.length() == 10) {
             while (!ISBNCode.isEmpty()) {
                 if (ISBNCode.charAt(0) == 'X') {
                     sumOfCf += 10;
                 } else {
-                    sumOfCf += counter * Character.digit(ISBNCode.charAt(0),10);
+                    sumOfCf += counter * Character.digit(ISBNCode.charAt(0), 10);
                 }
                 copyOfCode = ISBNCode.substring(1);
                 ISBNCode = copyOfCode;
                 counter--;
             }
             if (sumOfCf % 11 != 0) {
-                this.ISBNCode = "";
+                return "";
             } else {
-                this.ISBNCode = ISBNCodeOriginal;
+                return ISBNCodeOriginal;
             }
         }
+        return "";
     }
 
     public Integer getYear() {
